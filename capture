@@ -1,0 +1,18 @@
+#!/bin/bash
+# Capture command - Display captured hosts
+
+HOSTS_FILE="/var/lib/cpture/captured_hosts.txt"
+
+if [ ! -f "$HOSTS_FILE" ]; then
+    echo "No captured hosts found."
+    echo "The capture service may not be running or hasn't captured any hosts yet."
+    echo ""
+    echo "To check service status: sudo systemctl status capture"
+    exit 0
+fi
+
+echo "Captured Hosts:"
+echo "==============="
+cat "$HOSTS_FILE"
+echo ""
+echo "Total: $(wc -l < "$HOSTS_FILE") hosts"
