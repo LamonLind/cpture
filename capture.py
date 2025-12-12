@@ -66,7 +66,11 @@ def save_host(filename, host):
         pass
 
 def main():
-    output_file = "captured_hosts.txt"
+    # Use /var/lib/cpture when running as service, or current dir otherwise
+    if os.path.exists('/var/lib/cpture'):
+        output_file = "/var/lib/cpture/captured_hosts.txt"
+    else:
+        output_file = "captured_hosts.txt"
     # Only look for Host: header (case-insensitive)
     patterns = [
         re.compile(r"Host:", re.IGNORECASE)

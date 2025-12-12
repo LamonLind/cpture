@@ -1,0 +1,16 @@
+[Unit]
+Description=Cpture Network Packet Capture Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/capture.py
+Restart=always
+RestartSec=10
+User=root
+WorkingDirectory=/var/lib/cpture
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
